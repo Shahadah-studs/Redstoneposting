@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,34 +15,34 @@
     </header>
 
     <main class="mc-container">
-        <!-- Écran d'Authentification -->
+        <!-- Authentication Screen -->
         <section id="authView" class="mc-panel hide">
-            <h2 id="authTitle">Connexion au Hub</h2>
+            <h2 id="authTitle">Log in to Hub</h2>
             <div class="mc-form-group">
-                <label>Email :</label>
+                <label>Email:</label>
                 <input type="email" id="authEmail" class="mc-input">
             </div>
             <div class="mc-form-group">
-                <label>Mot de passe :</label>
+                <label>Password:</label>
                 <input type="password" id="authPassword" class="mc-input">
             </div>
             <div style="margin-top: 15px;">
-                <button id="authPrimaryBtn" class="mc-btn">Se connecter</button>
-                <button id="authToggleBtn" class="mc-btn-text">Créer un compte</button>
+                <button id="authPrimaryBtn" class="mc-btn">Log In</button>
+                <button id="authToggleBtn" class="mc-btn-text">Create an account</button>
             </div>
         </section>
 
-        <!-- Fil d'actualité Principal (Hub Feed) -->
+        <!-- Main Hub Feed View -->
         <div id="hubView" class="hide">
             <section class="mc-panel new-post-box">
-                <h2>Poser un bloc de texte...</h2>
-                <textarea id="postContent" placeholder="Écrivez votre message ici... (S'efface au redémarrage !)"></textarea>
-                <button id="submitPostBtn" class="mc-btn">POSER LE BLOC</button>
+                <h2>Place down a text block...</h2>
+                <textarea id="postContent" placeholder="Write your message here... (Clears on restart!)"></textarea>
+                <button id="submitPostBtn" class="mc-btn">PLACE BLOCK</button>
             </section>
             <section id="feedContainer" class="feed-container"></section>
         </div>
 
-        <!-- Profil Public des Joueurs -->
+        <!-- Public Player Profile View -->
         <div id="profileView" class="hide">
             <section class="mc-panel profile-box">
                 <div class="profile-header-card">
@@ -52,9 +52,9 @@
                         <p id="profileJoined" class="post-meta" style="margin:5px 0 0 0;"></p>
                     </div>
                 </div>
-                <button id="backToFeedBtn" class="mc-btn" style="margin-top:15px;">Retour au Hub</button>
+                <button id="backToFeedBtn" class="mc-btn" style="margin-top:15px;">Back to Hub</button>
             </section>
-            <h3 style="text-shadow: 2px 2px #000; margin-bottom:15px;">Créations de ce joueur :</h3>
+            <h3 style="text-shadow: 2px 2px #000; margin-bottom:15px;">Creations by this player:</h3>
             <section id="profileFeedContainer" class="feed-container"></section>
         </div>
     </main>
