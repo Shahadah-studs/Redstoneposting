@@ -1,15 +1,15 @@
-const db = require('./shared');
+const { getHubData } = require('./shared');
 
 exports.handler = async (event) => {
     const method = event.httpMethod;
+    const { store, posts } = await getHubData();
 
     if (method === "GET") {
         const queryParams = event.queryStringParameters;
-        let result = db.posts;
+        let result = posts;
         
-        // If profile filtering is called
         if (queryParams && queryParams.email) {
-            result = db.posts.filter(p => p.email.toLowerCase() === queryParams.email.toLowerCase());
+            result = posts.filter(p => p.email.toLowerCase() === queryParams.email.toLowerCase());
         }
 
         return {
@@ -29,10 +29,12 @@ exports.handler = async (event) => {
             email: data.email,
             pfpLetter: data.pfpLetter || data.email.charAt(0).toUpperCase(),
             content: data.content,
-            redstone: 0,
-            tnt: 0
+            fire: 0,
+            heart: 0
         };
-        db.posts.unshift(newPost);
+        
+        posts.unshift(newPost);
+        await store.setJSON('posts', posts); 
 
         return {
             statusCode: 201,
@@ -43,3 +45,4 @@ exports.handler = async (event) => {
 
     return { statusCode: 405 };
 };
+
