@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redstoneposting // Main Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnfonts.com" rel="stylesheet">
+</head>
+<body>
+
+    <header class="mc-header">
+        <h1 class="mc-title" id="goHome" style="cursor:pointer;">🔴 Redstoneposting</h1>
+        <div id="authStatus" class="user-status"></div>
+    </header>
+
+    <main class="mc-container">
+        <!-- Écran d'Authentification -->
+        <section id="authView" class="mc-panel hide">
+            <h2 id="authTitle">Connexion au Hub</h2>
+            <div class="mc-form-group">
+                <label>Email :</label>
+                <input type="email" id="authEmail" class="mc-input">
+            </div>
+            <div class="mc-form-group">
+                <label>Mot de passe :</label>
+                <input type="password" id="authPassword" class="mc-input">
+            </div>
+            <div style="margin-top: 15px;">
+                <button id="authPrimaryBtn" class="mc-btn">Se connecter</button>
+                <button id="authToggleBtn" class="mc-btn-text">Créer un compte</button>
+            </div>
+        </section>
+
+        <!-- Fil d'actualité Principal (Hub Feed) -->
+        <div id="hubView" class="hide">
+            <section class="mc-panel new-post-box">
+                <h2>Poser un bloc de texte...</h2>
+                <textarea id="postContent" placeholder="Écrivez votre message ici... (S'efface au redémarrage !)"></textarea>
+                <button id="submitPostBtn" class="mc-btn">POSER LE BLOC</button>
+            </section>
+            <section id="feedContainer" class="feed-container"></section>
+        </div>
+
+        <!-- Profil Public des Joueurs -->
+        <div id="profileView" class="hide">
+            <section class="mc-panel profile-box">
+                <div class="profile-header-card">
+                    <div id="profilePfp" class="avatar-big"></div>
+                    <div>
+                        <h2 id="profileUsername" style="margin:0;"></h2>
+                        <p id="profileJoined" class="post-meta" style="margin:5px 0 0 0;"></p>
+                    </div>
+                </div>
+                <button id="backToFeedBtn" class="mc-btn" style="margin-top:15px;">Retour au Hub</button>
+            </section>
+            <h3 style="text-shadow: 2px 2px #000; margin-bottom:15px;">Créations de ce joueur :</h3>
+            <section id="profileFeedContainer" class="feed-container"></section>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
