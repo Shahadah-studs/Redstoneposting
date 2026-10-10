@@ -126,8 +126,8 @@ function renderPostsList(posts, container) {
             </div>
             <p class="post-body">${post.content}</p>
             <div class="post-actions">
-                <button class="mc-btn" onclick="react(${post.id}, 'redstone')">🔴 Power (${post.redstone || 0})</button>
-                <button class="mc-btn" onclick="react(${post.id}, 'tnt')">💣 TNT (${post.tnt || 0})</button>
+                <button class="mc-btn" onclick="react(${post.id}, 'fire')">🔥 Fire (${post.fire || 0})</button>
+                <button class="mc-btn" onclick="react(${post.id}, 'heart')">❤️ Heart (${post.heart || 0})</button>
             </div>
         `;
         el.querySelector('.username-link').addEventListener('click', (e) => {
@@ -188,3 +188,4 @@ document.getElementById('goHome').addEventListener('click', () => {
 
 window.react = react;
 init();
+
