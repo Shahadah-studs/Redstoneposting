@@ -1,12 +1,11 @@
-const { getHubData } = require('./shared');
+const db = require('./shared');
 
 exports.handler = async (event) => {
-    if (event.httpMethod !== "POST") return { statusCode: 405 };
+    if (event.httpMethod !== "POST") return { statusCode: 405, body: "Method Not Allowed" };
     const { email, password } = JSON.parse(event.body);
     if (!email || !password) return { statusCode: 400, body: JSON.stringify({ error: "Missing fields!" }) };
 
-    const { store, users } = await getHubData();
-    const exists = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+    const exists = db.users.find(u => u.email.toLowerCase() === email.toLowerCase());
     if (exists) return { statusCode: 400, body: JSON.stringify({ error: "This player username is already registered!" }) };
 
     const newUser = {
@@ -14,9 +13,7 @@ exports.handler = async (event) => {
         password, 
         pfpLetter: email.charAt(0).toUpperCase()
     };
-    
-    users.push(newUser);
-    await store.setJSON('users', users);
+    db.users.push(newUser);
 
     return {
         statusCode: 201,
