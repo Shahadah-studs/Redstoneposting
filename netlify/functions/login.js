@@ -1,17 +1,19 @@
-const db = require('./shared');
+const { getHubData } = require('./shared');
 
 exports.handler = async (event) => {
     if (event.httpMethod !== "POST") return { statusCode: 405 };
     const { email, password } = JSON.parse(event.body);
 
-    const user = db.users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+    const { store, users } = await getHubData();
+    const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+    
     if (!user) {
-        const exists = db.users.find(u => u.email.toLowerCase() === email.toLowerCase());
+        const exists = users.find(u => u.email.toLowerCase() === email.toLowerCase());
         if (exists) return { statusCode: 401, body: JSON.stringify({ error: "Incorrect password selection!" }) };
         
-        // Auto-register feature if account doesn't exist yet
         const newUser = { email: email.toLowerCase(), password, pfpLetter: email.charAt(0).toUpperCase() };
-        db.users.push(newUser);
+        users.push(newUser);
+        await store.setJSON('users', users);
         return {
             statusCode: 200,
             headers: { "Content-Type": "application/json" },
@@ -25,3 +27,4 @@ exports.handler = async (event) => {
         body: JSON.stringify({ user: { email: user.email, pfpLetter: user.pfpLetter } })
     };
 };
+
